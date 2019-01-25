@@ -6,18 +6,94 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+
     <title>Salary Calculator</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 
 <body>
-    <form action="">
-        <label for="">Paga</label>
-        <input type="number" id="SalaryValue" placeholder="paga">
-        <button type="button" id="calculate">Llogarit</button>
-    </form>
 
-    <div id="result">Result Here</div>
+    <div id="wrapper">
+        <!-- header -->
+        <header id="header">
+            Llogaritesi i pages
+        </header>
+
+        <!-- content -->
+        <section id="content">
+
+            <!-- salary calculator -->
+            <div id="salaryCalculator">
+                <form action="">
+                    <div class="input-group">
+                        <label for="">Paga</label>
+                        <br>
+                        <input type="number" id="SalaryValue" placeholder="paga">
+                        <span class="input-focus"></span>
+                    </div>
+                    <br>
+                    <button type="button" id="calculate" class="inputSubmit">Llogarit</button>
+                </form>
+                <br>
+                <div id="result">Result Here</div>
+            </div>
+            <!-- salary calculator end -->
+
+            <!-- results -->
+            <!-- <ul>
+                <li>Paga Bruto</li>
+                <li>Paga Neto</li>
+            </ul>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Punonjësi</th>
+                        <th>Punëdhënësi</th>
+                        <th>Totali</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="trTap">
+                        <td>TAP</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sigurimet Shoqërore</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sigurimet Shëndetësore</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Totali</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table> -->
+            <!-- results end -->
+
+        </section>
+        <!-- content end -->
+
+        <!-- footer -->
+        <footer id="footer">
+            All right reserved
+        </footer>
+    </div>
 
     <script src="js/app.js" type="module"></script>
 </body>

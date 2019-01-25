@@ -1,0 +1,119 @@
+/* reset */
+* {
+    box-sizing: border-box;
+    outline: none;
+    line-height: 1.3;
+}
+body { 
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+}
+ul, ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+
+/* grid */
+#wrapper {
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+}
+#content {
+    display: flex;
+    flex-flow: column;
+    padding: 0 15px;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+#salaryCalculator {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin: 15px 0;
+}
+#result {
+    font-size: 16px;
+}
+
+/* input */
+.input-group input {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    position: relative;
+    font-size: 16px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-weight: 500;
+    width: 300px;
+    outline: none;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+.input-group:last-child {
+    margin-bottom: 0;
+}
+.input-group label {
+    display: block;
+    font-size: 15px;
+    color: #999999;
+    padding-left: 5px;
+    font-weight: 500;
+}
+.input-focus {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+.input-focus:before {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #f7931e;
+    transition: 0.35s ease all;
+    -moz-transition: 0.35s ease all;
+    -webkit-transition: 0.35s ease all;
+}
+.input-group input:focus ~ .input-focus::before {
+    width: 100%;
+}
+.inputSubmit {
+    padding: 0 20px;
+    width: 100%;
+    height: 40px;
+    background-color: #f7931e;
+    border: 1px solid #f7931e;
+    cursor: pointer;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0 3px 12px 1px #ccc;
+    -moz-box-shadow: 0 3px 12px 1px #ccc;
+    -webkit-box-shadow: 0 3px 12px 1px #ccc;
+    -o-box-shadow: 0 3px 12px 1px #ccc;
+    -ms-box-shadow: 0 3px 12px 1px #ccc;
+    transition: all .2s;
+    font-family: montserrat;
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    /* input */
+    .input-group input {
+        width: 100%;
+    }
+}
