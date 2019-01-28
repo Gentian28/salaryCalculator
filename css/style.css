@@ -163,6 +163,17 @@ p {
     margin-left: 10px;
 }
 
+/* footer */
+#links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    margin: 10px;
+}
+
+/* responsive */
 @media (max-width: 500px) {
     /* input */
     .input-group input {
