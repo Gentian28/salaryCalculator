@@ -5,7 +5,7 @@ export class Salary {
         employerSocialContribution,
         employerHealthContribution,
         tapSalaryTax,
-        netoSalary,
+        netSalary,
         totalExpense) {
         this.grossSalary = grossSalary;
         this.employeeSocialContribution = employeeSocialContribution;
@@ -13,7 +13,7 @@ export class Salary {
         this.employerSocialContribution = employerSocialContribution;
         this.employerHealthContribution = employerHealthContribution;
         this.tapSalaryTax = tapSalaryTax;
-        this.netoSalary = netoSalary;
+        this.netSalary = netSalary;
         this.totalExpense = totalExpense;
     }
 }

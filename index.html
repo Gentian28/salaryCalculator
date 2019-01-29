@@ -11,7 +11,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
 
-    <title>Salary Calculator</title>
+    <title>Llogaritesi i pages</title>
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -53,19 +53,28 @@
                     <div class="input-group">
                         <label for="">Paga</label>
                         <br>
-                        <input type="number" id="SalaryValue" placeholder="paga bruto">
+                        <input type="number" id="SalaryValue" placeholder="paga">
                         <span class="input-focus"></span>
                     </div>
                     <br>
-                    <button type="button" id="calculate" class="inputSubmit">Llogarit</button>
+                    <section class="calculateButtons">
+                        <button type="button" id="calculateNet" class="inputSubmit">Bruto ne Neto</button>
+                        <button type="button" id="calculateGross" class="inputSubmit">Neto ne Bruto</button>
+                    </section>
                 </form>
-                <br>
-                <div id="result">Paga Neto</div>
             </div>
             <!-- salary calculator end -->
 
+            <!-- results -->
+            <section id="result">
+            </section>
+
+            <!-- table of expenses -->
             <div id="expensesTable">
             </div>
+
+            <!-- total expense -->
+            <div id="total"></div>
 
         </section>
         <!-- content end -->

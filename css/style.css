@@ -47,7 +47,24 @@ p {
     width: 100%;
 }
 #result {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 15px;
+}
+.result {
     font-size: 16px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 500px;
+    padding: 10px;
+    color: #000000;
+}
+#result span {
+    margin-left: 3px;
+}
+#expensesTable {
+    margin-bottom: 15px;
 }
 
 /* input */
@@ -126,6 +143,7 @@ p {
     border-radius: 10px;
     overflow: hidden;
     max-width: 500px;
+    width: 500px;
 }
 .table .thead-dark td {
     color: #fff;
@@ -161,6 +179,15 @@ p {
     font-size: 16px;
     font-weight: 500;
     margin-left: 10px;
+}
+
+/* content */
+.calculateButtons {
+    display: flex;
+    justify-content: space-between;
+}
+.calculateButtons button {
+    width: 49%;
 }
 
 /* footer */
