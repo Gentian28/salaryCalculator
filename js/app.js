@@ -24,6 +24,13 @@ let employerSocialContribution;
 let employerHealthContribution;
 let tapSalaryTax = 0;
 
+window.onkeydown = function () {
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+    }
+}
+
 const calculateContributions = function (grossSalary) {
     // calculate employee and employer social contribution
     if (grossSalary >= maxSalary) {
