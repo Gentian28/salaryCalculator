@@ -172,6 +172,9 @@ p {
     max-width: 500px;
     width: 500px;
 }
+.table-mobile {
+    width: 100%;
+}
 .table .thead-dark td {
     color: #fff;
     background-color: #212529;

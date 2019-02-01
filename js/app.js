@@ -2,6 +2,7 @@ import { Salary } from './salary.js';
 import { tap } from './tap.js';
 import { netSalaryRate } from './netSalaryRate.js';
 import { populateExpensesTable } from './generateTable.js';
+import { populateMobileExpensesTable } from './generateMobileTable.js';
 import { populateResults, populateTotal } from './salaryResult.js';
 
 const employeeSocialContributionPercentage = 9.5 / 100;
@@ -72,7 +73,11 @@ calculateNet.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         } else if (grossSalary > tap.min && grossSalary <= tap.max) {
             let tapSalaryTax = (grossSalary - tap.min) * tapMinTaxPercentage;
@@ -81,7 +86,11 @@ calculateNet.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         } else {
             let tapMaxSalaryTax = (grossSalary - tap.max) * tapMaxTaxPercentage;
@@ -92,7 +101,11 @@ calculateNet.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         }
     }
@@ -120,7 +133,11 @@ calculateGross.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         } else if (netSalary > netSalaryRate.min && netSalary <= netSalaryRate.medium) {
             grossSalary = (netSalary - tap.min * tapMinTaxPercentage) / (1 - tapMinTaxPercentage - (employeeSocialContributionPercentage + employeeHealthContributionPercentage));
@@ -129,7 +146,11 @@ calculateGross.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         } else if (netSalary > netSalaryRate.medium && netSalary <= netSalaryRate.max) {
             grossSalary = (netSalary - tap.min * tapMinTaxPercentage + maxSalary * employeeSocialContributionPercentage) / (1 - tapMinTaxPercentage - employeeHealthContributionPercentage);
@@ -138,7 +159,11 @@ calculateGross.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         } else {
             grossSalary = (netSalary + (tap.max - tap.min) * tapMinTaxPercentage - tapMaxTaxPercentage * tap.max + maxSalary * employeeSocialContributionPercentage) / (1 - tapMaxTaxPercentage - employeeHealthContributionPercentage);
@@ -149,7 +174,11 @@ calculateGross.onclick = function () {
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
             populateResults(salary);
-            populateExpensesTable(salary);
+            if (window.innerWidth < 500) {
+                populateMobileExpensesTable(salary);
+            } else {
+                populateExpensesTable(salary);
+            }
             populateTotal(salary);
         }
     }
