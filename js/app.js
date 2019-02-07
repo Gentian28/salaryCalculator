@@ -37,16 +37,18 @@ const calculateContributions = function (grossSalary) {
     if (grossSalary >= maxSalary) {
         employeeSocialContribution = maxSalary * employeeSocialContributionPercentage;
         employerSocialContribution = maxSalary * employerSocialContributionPercentage;
+        employeeHealthContribution = maxSalary * employeeHealthContributionPercentage;
+        employerHealthContribution = maxSalary * employerHealthContributionPercentage;
     } else {
         employeeSocialContribution = grossSalary * employeeSocialContributionPercentage;
         employerSocialContribution = grossSalary * employerSocialContributionPercentage;
+        employeeHealthContribution = grossSalary * employeeHealthContributionPercentage;
+        employerHealthContribution = grossSalary * employerHealthContributionPercentage;
     }
 
     // calculate employee health contribution
-    employeeHealthContribution = grossSalary * employeeHealthContributionPercentage;
 
     // calculate employer health contribution
-    employerHealthContribution = grossSalary * employerHealthContributionPercentage;
 
     // calculate total expense
     totalExpense = grossSalary + employerHealthContribution + employerSocialContribution;
