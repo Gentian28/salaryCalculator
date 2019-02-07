@@ -34,6 +34,7 @@ window.onkeydown = function () {
 
 const calculateContributions = function (grossSalary) {
     // calculate employee and employer social contribution
+    // calculate employee and employer health contribution
     if (grossSalary >= maxSalary) {
         employeeSocialContribution = maxSalary * employeeSocialContributionPercentage;
         employerSocialContribution = maxSalary * employerSocialContributionPercentage;
@@ -45,10 +46,6 @@ const calculateContributions = function (grossSalary) {
         employeeHealthContribution = grossSalary * employeeHealthContributionPercentage;
         employerHealthContribution = grossSalary * employerHealthContributionPercentage;
     }
-
-    // calculate employee health contribution
-
-    // calculate employer health contribution
 
     // calculate total expense
     totalExpense = grossSalary + employerHealthContribution + employerSocialContribution;
