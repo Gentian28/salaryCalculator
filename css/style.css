@@ -101,7 +101,6 @@ p {
     position: relative;
     font-size: 16px;
     padding: 10px 10px 10px 5px;
-    display: block;
     width: 100%;
     border: none;
     border-bottom: 2px solid #ccc;
@@ -124,7 +123,6 @@ p {
     cursor: pointer;
 }
 .input-focus {
-    position: relative;
     display: block;
     width: 100%;
 }
@@ -159,6 +157,42 @@ p {
     transition: all .2s;
     font-family: montserrat;
     font-weight: 500;
+}
+
+/* select */
+select {
+    width: 51px;
+    margin-left: 10px;
+    height: 35px;
+    padding: 4px;
+    border-radius:4px;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+    background: #eee;
+    border: none;
+    outline: none;
+    display: inline-block;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+.select-container {
+    position: relative;
+}
+.select-container label:after {
+    content:'<>';
+    font: 11px "Consolas", monospace;
+    color: #666;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: 1px; 
+    top: 9px;
+    padding: 0 0 2px;
+    border-bottom: 1px solid #ddd;
+    position: absolute;
+    pointer-events: none;
 }
 
 /* table */
