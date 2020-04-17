@@ -35,7 +35,9 @@
 
     <meta name="google-site-verification" content="HtOg17F71dJalzvIW2z4Bzds6zYsxCM96ZS5UtXwSK4" />
 
-    <script src="dist/bundle.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <!-- <script src="dist/bundle.js" defer></script> -->
+    <script src="js/app.js" defer type="module"></script>
 
 </head>
 
@@ -57,9 +59,22 @@
                     <div class="input-group">
                         <label for="SalaryValue">Paga</label>
                         <br>
-                        <input type="number" id="SalaryValue" placeholder="vlera e pages">
-                        <span class="input-focus"></span>
+                        <div style="display: flex; align-items: center">
+                            <div style="width: 100%; position:relative">
+                                <input type="number" id="SalaryValue" placeholder="vlera e pages">
+                                <span class="input-focus"></span>
+                            </div>
+                            <div class="select-container">
+                                <label for=""></label>
+                                <select id="currency">
+                                    <option value="all">ALL</option>
+                                    <option value="eur">EUR</option>
+                                    <option value="usd">USD</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
+
                     <section class="calculateButtons">
                         <button type="button" id="calculateNet" class="inputSubmit">Bruto ne Neto</button>
                         <button type="button" id="calculateGross" class="inputSubmit">Neto ne Bruto</button>

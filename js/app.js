@@ -24,6 +24,7 @@ let employeeHealthContribution;
 let employerSocialContribution;
 let employerHealthContribution;
 let tapSalaryTax = 0;
+let converteCourse;
 
 window.onkeydown = function () {
     if (event.keyCode == 13) {
@@ -52,9 +53,20 @@ const calculateContributions = function (grossSalary) {
     totalExpense = grossSalary + employerHealthContribution + employerSocialContribution;
 }
 
-calculateNet.onclick = function () {
-    // get Gross Salary value
-    grossSalary = parseInt(SalaryValue.value);
+calculateNet.onclick = async function () {
+    switch (currency.value) {
+        case 'eur':
+            converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=EUR_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
+            grossSalary = parseInt(SalaryValue.value) * converteCourse.data.EUR_ALL;
+            break;
+        case 'usd':
+            converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=USD_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
+            grossSalary = parseInt(SalaryValue.value) * converteCourse.data.USD_ALL;
+            break;
+        default:
+            grossSalary = parseInt(SalaryValue.value);
+
+    }
     if (isNaN(grossSalary)) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
         document.querySelectorAll('#message')[0].style.display = 'block';
@@ -111,9 +123,20 @@ calculateNet.onclick = function () {
     }
 }
 
-calculateGross.onclick = function () {
+calculateGross.onclick = async function () {
     // get Net Salary value
-    netSalary = parseInt(SalaryValue.value);
+    switch (currency.value) {
+        case 'eur':
+            converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=EUR_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
+            netSalary = parseInt(SalaryValue.value) * converteCourse.data.EUR_ALL;
+            break;
+        case 'usd':
+            converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=USD_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
+            netSalary = parseInt(SalaryValue.value) * converteCourse.data.USD_ALL;
+            break;
+        default:
+            netSalary = parseInt(SalaryValue.value);
+    }
 
     if (isNaN(netSalary)) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
