@@ -1,0 +1,25 @@
+{
+  "name": "salarycalculator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "webpack-cli": "^3.3.11",
+    "webpack": "^4.42.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack --entry ./js/app.js -o dist/bundle.js --mode production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gentian28/salaryCalculator.git"
+  },
+  "author": "Gentian Shkembi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gentian28/salaryCalculator/issues"
+  },
+  "homepage": "https://github.com/Gentian28/salaryCalculator#readme"
+}
