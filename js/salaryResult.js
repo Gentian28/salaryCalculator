@@ -1,8 +1,8 @@
 function generateResults(salary) {
     let results = '';
     results += `<section class="result">
-        <div>Paga Bruto: <span>${Math.round(salary.grossSalary)}</span></div>
-        <div>Paga Neto: <span>${Math.round(salary.netSalary)}</span></div>
+        <div><span>Paga Bruto: </span><span>${Math.round(salary.grossSalary)}</span></div>
+        <div><span>Paga Neto: </span><span>${Math.round(salary.netSalary)}</span></div>
     </section>`;
 
     return results;
