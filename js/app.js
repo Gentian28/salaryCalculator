@@ -13,9 +13,9 @@ const employerHealthContributionPercentage = 1.7 / 100;
 
 const tapMinTaxPercentage = 13 / 100;
 const tapMaxTaxPercentage = 23 / 100;
-const minSalary = 26000;
-const minNetSalary = 23088;
-const maxSalary = 114670;
+const minSalary = 30000; //26000
+const minNetSalary = 26640; //23088
+const maxSalary = 132312; // 114670
 let grossSalary;
 let netSalary;
 let totalExpense;

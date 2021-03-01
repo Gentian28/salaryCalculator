@@ -6,4 +6,7 @@ class NetSalaryRate {
     }
 }
 
-export const netSalaryRate = new NetSalaryRate(26640, 90820, 120956);
+// OLD TAX
+// export const netSalaryRate = new NetSalaryRate(26640, 90820, 120956);
+export const netSalaryRate = new NetSalaryRate(26640, 104193, 119280);
+
