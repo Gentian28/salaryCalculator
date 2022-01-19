@@ -35,6 +35,20 @@ p {
     height: 100%;
     align-items: center;
 }
+.flex {
+    display: flex;
+}
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#main-nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 500px;
+}
 #salaryCalculator {
     display: flex;
     flex-flow: column;

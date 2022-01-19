@@ -1,0 +1,34 @@
+{
+    "en": {
+        "header": "Salary Calculator",
+        "salaryValueLabel": "Salary",
+        "salaryValueInput": "salary value",
+        "incomeTaxLabel": "PIT",
+        "employeeCoulmnHeader": "Employee",
+        "employerCoulmnHeader": "Employer",
+        "totalLabel": "Total",
+        "socialContributions": "Social contributions",
+        "healthContributions": "Health contributions",
+        "grossToNetButton": "Gross to Net",
+        "netToGrossButton": "Net to Gross",
+        "grossSalaryLabel": "Gross Salary",
+        "netSalaryLabel": "Net Salary",
+        "totalExpensesLabel": "Total expenses"
+    },
+    "al": {
+        "header": "Llogaritesi i pages",
+        "salaryValueLabel": "Paga",
+        "salaryValueInput": "vlera e pages",
+        "incomeTaxLabel": "TAP",
+        "employeeCoulmnHeader": "Punonjësi",
+        "employerCoulmnHeader": "Punëdhënësi",
+        "totalLabel": "Totali",
+        "socialContributions": "Sigurimet Shoqërore",
+        "healthContributions": "Sigurimet Shëndetësore",
+        "grossToNetButton": "Bruto ne Neto",
+        "netToGrossButton": "Neto ne Bruto",
+        "grossSalaryLabel": "Paga Bruto",
+        "netSalaryLabel": "Paga Neto",
+        "totalExpensesLabel": "Shpenzime total"
+    }
+}

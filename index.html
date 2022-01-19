@@ -56,8 +56,19 @@
     <div id="wrapper">
         <!-- header -->
         <header id="header">
-            <img src="images/money-transfer.png" alt="Llogaritesi i pages">
-            <h1>Llogaritesi i pages</h1>
+            <nav id="main-nav">
+                <div></div>
+                <div class="flex-center">
+                    <img src="images/money-transfer.png" alt="Llogaritesi i pages">
+                    <h1 id="headerPageName"></h1>
+                </div>
+                <form action="#">
+                    <select name="language" id="language">
+                    <option value="en">English</option>
+                    <option value="al">Albanian</option>
+                    </select>
+                </form>
+            </nav>
         </header>
 
         <!-- content -->
@@ -67,7 +78,7 @@
             <div id="salaryCalculator">
                 <form action="">
                     <div class="input-group">
-                        <label for="SalaryValue">Paga</label>
+                        <label for="SalaryValue" name="SalaryValueLabel">Paga</label>
                         <br>
                         <div style="display: flex; align-items: center">
                             <div style="width: 100%; position:relative">

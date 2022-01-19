@@ -1,8 +1,11 @@
+import * as jsonData from '../lang/lang.json';
+import { appState } from './stateManager'
+
 function generateResults(salary) {
     let results = '';
     results += `<section class="result">
-        <div><span>Paga Bruto: </span><span>${Math.round(salary.grossSalary)}</span></div>
-        <div><span>Paga Neto: </span><span>${Math.round(salary.netSalary)}</span></div>
+        <div><span>${jsonData[appState.language].grossSalaryLabel}: </span><span>${Math.round(salary.grossSalary)}</span></div>
+        <div><span>${jsonData[appState.language].netSalaryLabel}: </span><span>${Math.round(salary.netSalary)}</span></div>
     </section>`;
 
     return results;
@@ -10,7 +13,7 @@ function generateResults(salary) {
 
 function generateTotal(salary) {
     let total = '';
-    total += `<section class="result">Shpenzime total: ${Math.round(salary.totalExpense)}</section>`;
+    total += `<section class="result">${jsonData[appState.language].totalExpensesLabel}: ${Math.round(salary.totalExpense)}</section>`;
     return total;
 }
 
