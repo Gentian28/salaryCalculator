@@ -48,6 +48,7 @@ p {
     justify-content: space-between;
     width: 100%;
     max-width: 500px;
+    align-items: center;
 }
 #salaryCalculator {
     display: flex;
@@ -174,7 +175,7 @@ p {
 }
 
 /* select */
-select {
+.select {
     width: 51px;
     margin-left: 10px;
     height: 35px;
