@@ -50,6 +50,16 @@ p {
     max-width: 500px;
     align-items: center;
 }
+#language {
+    background: #1976D2;
+    color: #ffffff;
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 5px 2px 5px 1px;
+}
+#language:hover {
+    cursor: pointer;
+}
 #salaryCalculator {
     display: flex;
     flex-flow: column;
