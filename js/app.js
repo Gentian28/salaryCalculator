@@ -8,6 +8,10 @@ import { populateExpensesTable } from './generateTable.js';
 import { populateMobileExpensesTable } from './generateMobileTable.js';
 import { populateResults, populateTotal } from './salaryResult.js';
 
+import { SalaryCalculator2021 } from './salaryCalculation';
+
+const salaryCalculator2021 = new SalaryCalculator2021();
+
 const employeeSocialContributionPercentage = 9.5 / 100;
 const employeeHealthContributionPercentage = 1.7 / 100;
 
@@ -29,7 +33,7 @@ let employerHealthContribution;
 let tapSalaryTax = 0;
 let converteCourse;
 
-window.onkeydown = function () {
+window.onkeydown = function (event) {
     if (event.keyCode == 13) {
         event.preventDefault();
         return false;
@@ -56,20 +60,28 @@ const calculateContributions = function (grossSalary) {
     totalExpense = grossSalary + employerHealthContribution + employerSocialContribution;
 }
 
-calculateNet.onclick = async function () {
-    switch (currency.value) {
-        case 'eur':
-            converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=EUR_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
-            grossSalary = parseInt(SalaryValue.value) * converteCourse.data.EUR_ALL;
-            break;
-        case 'usd':
-            converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=USD_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
-            grossSalary = parseInt(SalaryValue.value) * converteCourse.data.USD_ALL;
-            break;
-        default:
-            grossSalary = parseInt(SalaryValue.value);
 
+async function convertMoneyCurrency(fromCurrency, toCurrency) {
+    fromCurrency = fromCurrency.toUpperCase();
+    toCurrency = toCurrency.toUpperCase();
+    let conversionCourse = await axios.get(`https://free.currconv.com/api/v7/convert?q=${fromCurrency}_${toCurrency}&compact=ultra&apiKey=17e0bf83ad97d32d9c38`);
+    return conversionCourse.data[`${fromCurrency}_${toCurrency}`];
+}
+
+currency.onchange = function (event) {
+    appState.setState('activeCurrency', event.target.value);
+}
+
+calculateNet.onclick = async function () {
+    if(appState.activeCurrency != 'all') {
+        if(appState.currencyRate[`${appState.activeCurrency}_all`] == null) {
+            console.log('Call to service')
+            appState.currencyRate[`${appState.activeCurrency}_all`] = await convertMoneyCurrency(appState.activeCurrency, 'all');
+        }
     }
+
+    grossSalary = appState.activeCurrency == 'all' ? parseInt(SalaryValue.value) : parseInt(SalaryValue.value) * appState.currencyRate[`${appState.activeCurrency}_all`];
+
     if (isNaN(grossSalary)) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
         document.querySelectorAll('#message')[0].style.display = 'block';
@@ -81,54 +93,26 @@ calculateNet.onclick = async function () {
     } else {
         document.querySelectorAll('#message')[0].style.display = 'none';
         document.querySelectorAll('#allResults')[0].style.display = 'block';
-        calculateContributions(grossSalary);
 
-        if (grossSalary <= tap.min) {
-            netSalary = grossSalary - employeeSocialContribution - employeeHealthContribution;
-            let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
-            console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
-        } else if (grossSalary > tap.min && grossSalary <= tap.max) {
-            let tapSalaryTax = (grossSalary - tap.min) * tapMinTaxPercentage;
-            netSalary = grossSalary - employeeSocialContribution - employeeHealthContribution - tapSalaryTax;
+        const netSalary = salaryCalculator2021.calculateNetSalary(grossSalary);
 
-            let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
-            console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
+        console.log(netSalary)
+        populateResults(netSalary);
+        if (window.innerWidth < 500) {
+            populateMobileExpensesTable(netSalary);
         } else {
-            let tapMaxSalaryTax = (grossSalary - tap.max) * tapMaxTaxPercentage;
-            let tapMinSalaryTax = (tap.max - tap.min) * tapMinTaxPercentage;
-            let tapSalaryTax = tapMaxSalaryTax + tapMinSalaryTax;
-
-            netSalary = grossSalary - employeeSocialContribution - employeeHealthContribution - tapSalaryTax;
-            let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
-            console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
+            populateExpensesTable(netSalary);
         }
+        populateTotal(netSalary);
     }
 }
 
+
+
 calculateGross.onclick = async function () {
+    
     // get Net Salary value
-    switch (currency.value) {
+    switch (appState.activeCurrency) {
         case 'eur':
             converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=EUR_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
             netSalary = parseInt(SalaryValue.value) * converteCourse.data.EUR_ALL;
@@ -158,39 +142,18 @@ calculateGross.onclick = async function () {
             calculateContributions(grossSalary);
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
         } else if (netSalary > netSalaryRate.min && netSalary <= netSalaryRate.medium) {
             grossSalary = (netSalary - tap.min * tapMinTaxPercentage) / (1 - tapMinTaxPercentage - (employeeSocialContributionPercentage + employeeHealthContributionPercentage));
             calculateContributions(grossSalary);
             let tapSalaryTax = (grossSalary - tap.min) * tapMinTaxPercentage;
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
         } else if (netSalary > netSalaryRate.medium && netSalary <= netSalaryRate.max) {
             grossSalary = (netSalary - tap.min * tapMinTaxPercentage + maxSalary * employeeSocialContributionPercentage) / (1 - tapMinTaxPercentage - employeeHealthContributionPercentage);
             calculateContributions(grossSalary);
             let tapSalaryTax = (grossSalary - tap.min) * tapMinTaxPercentage;
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
         } else {
             grossSalary = (netSalary + (tap.max - tap.min) * tapMinTaxPercentage - tapMaxTaxPercentage * tap.max + maxSalary * employeeSocialContributionPercentage) / (1 - tapMaxTaxPercentage - employeeHealthContributionPercentage);
             calculateContributions(grossSalary);
@@ -199,14 +162,14 @@ calculateGross.onclick = async function () {
             let tapSalaryTax = tapMaxSalaryTax + tapMinSalaryTax;
             let salary = new Salary(grossSalary, employeeSocialContribution, employeeHealthContribution, employerSocialContribution, employerHealthContribution, tapSalaryTax, netSalary, totalExpense);
             console.log(salary);
-            populateResults(salary);
-            if (window.innerWidth < 500) {
-                populateMobileExpensesTable(salary);
-            } else {
-                populateExpensesTable(salary);
-            }
-            populateTotal(salary);
         }
+        populateResults(salary);
+        if (window.innerWidth < 500) {
+            populateMobileExpensesTable(salary);
+        } else {
+            populateExpensesTable(salary);
+        }
+        populateTotal(salary);
     }
 }
 
@@ -214,23 +177,23 @@ calculateGross.onclick = async function () {
 
 const salaryValueLabel = document.getElementsByName('SalaryValueLabel')[0];
 
-headerPageName.innerHTML = jsonData[appState.language].header;
-salaryValueLabel.innerHTML = jsonData[appState.language].salaryValueLabel;
-SalaryValue.placeholder = jsonData[appState.language].salaryValueInput;
-calculateNet.innerHTML = jsonData[appState.language].grossToNetButton;
-calculateGross.innerHTML = jsonData[appState.language].netToGrossButton;
+headerPageName.innerHTML = jsonData[appState.getPropertyByKey('language')].header;
+salaryValueLabel.innerHTML = jsonData[appState.getPropertyByKey('language')].salaryValueLabel;
+SalaryValue.placeholder = jsonData[appState.getPropertyByKey('language')].salaryValueInput;
+calculateNet.innerHTML = jsonData[appState.getPropertyByKey('language')].grossToNetButton;
+calculateGross.innerHTML = jsonData[appState.getPropertyByKey('language')].netToGrossButton;
 
 language.onchange = async function(event) {
-    appState.setLanguage(event.target.value);
-    headerPageName.innerHTML = jsonData[appState.language].header;
-    salaryValueLabel.innerHTML = jsonData[appState.language].salaryValueLabel;
-    SalaryValue.placeholder = jsonData[appState.language].salaryValueInput;
-    calculateNet.innerHTML = jsonData[appState.language].grossToNetButton;
-    calculateGross.innerHTML = jsonData[appState.language].netToGrossButton;
+    appState.setState('language', event.target.value);
+    headerPageName.innerHTML = jsonData[appState.getPropertyByKey('language')].header;
+    salaryValueLabel.innerHTML = jsonData[appState.getPropertyByKey('language')].salaryValueLabel;
+    SalaryValue.placeholder = jsonData[appState.getPropertyByKey('language')].salaryValueInput;
+    calculateNet.innerHTML = jsonData[appState.getPropertyByKey('language')].grossToNetButton;
+    calculateGross.innerHTML = jsonData[appState.getPropertyByKey('language')].netToGrossButton;
     
     // duplicated logic from on click
     {
-        switch (currency.value) {
+        switch (appState.activeCurrency) {
             case 'eur':
                 converteCourse = await axios.get('https://free.currconv.com/api/v7/convert?q=EUR_ALL&compact=ultra&apiKey=17e0bf83ad97d32d9c38');
                 netSalary = parseInt(SalaryValue.value) * converteCourse.data.EUR_ALL;
@@ -254,7 +217,7 @@ language.onchange = async function(event) {
         } else {
             document.querySelectorAll('#message')[0].style.display = 'none';
             document.querySelectorAll('#allResults')[0].style.display = 'block';
-    
+            
             if (netSalary <= netSalaryRate.min) {
                 grossSalary = netSalary / (1 - (employeeSocialContributionPercentage + employeeHealthContributionPercentage));
                 calculateContributions(grossSalary);
@@ -312,3 +275,11 @@ language.onchange = async function(event) {
         }
     }
 }
+
+// const getConversionRate = function (...currencies) {
+//     currencies.forEach(currency => {
+//         console.log(currency);
+//     });
+// }
+
+// getConversionRate('all', 'eur', 'usd');

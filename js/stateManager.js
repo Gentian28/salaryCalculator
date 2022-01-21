@@ -1,15 +1,23 @@
 class StateManager {
-    constructor(lang) {
-        this.language = lang;
+    constructor(key, value) {
+        this[key] = value;
     }
 
-    getLanguage() {
-        return this.language;
+    getPropertyByKey(key) {
+        return this[key];
     }
 
-    setLanguage(lang) {
-        this.language = lang;
+    setState(key, value) {
+        this[key] = value;
     }
 }
 
-export const appState = new StateManager('en');
+export const appState = new StateManager('language', 'en');
+appState.setState(
+    'currencyRate',
+    {
+        usd_all: null,
+        eur_all: null
+    }
+);
+appState.setState('activeCurrency', 'all');
