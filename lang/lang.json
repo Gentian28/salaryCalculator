@@ -13,22 +13,26 @@
         "netToGrossButton": "Net to Gross",
         "grossSalaryLabel": "Gross Salary",
         "netSalaryLabel": "Net Salary",
-        "totalExpensesLabel": "Total expenses"
+        "totalExpensesLabel": "Total expenses",
+        "emptySalaryError": "Please enter a value",
+        "lowerThanMinSalaryError": "Salary cannot be less than minimal wage in Albania"
     },
     "al": {
-        "header": "Llogaritesi i pages",
+        "header": "Llogaritësi i pagës",
         "salaryValueLabel": "Paga",
-        "salaryValueInput": "vlera e pages",
+        "salaryValueInput": "vlera e pagës",
         "incomeTaxLabel": "TAP",
         "employeeCoulmnHeader": "Punonjësi",
         "employerCoulmnHeader": "Punëdhënësi",
         "totalLabel": "Totali",
         "socialContributions": "Sigurimet Shoqërore",
         "healthContributions": "Sigurimet Shëndetësore",
-        "grossToNetButton": "Bruto ne Neto",
-        "netToGrossButton": "Neto ne Bruto",
+        "grossToNetButton": "Bruto në Neto",
+        "netToGrossButton": "Neto në Bruto",
         "grossSalaryLabel": "Paga Bruto",
         "netSalaryLabel": "Paga Neto",
-        "totalExpensesLabel": "Shpenzime total"
+        "totalExpensesLabel": "Shpenzime total",
+        "emptySalaryError": "Ju lutem vendosni një vlerë",
+        "lowerThanMinSalaryError": "Vlera e pagës nuk mund të jetë më e ulët se paga minimale"
     }
 }

@@ -44,11 +44,11 @@ const handleGrossToNet = async function() {
     if (isNaN(grossSalary)) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
         document.querySelectorAll('#message')[0].style.display = 'block';
-        message.innerHTML = `<div class="message error">Ju lutem vendosni nje vlere!</div>`;
+        message.innerHTML = `<div class="message error">${jsonData[appState.getPropertyByKey('language')].emptySalaryError}!</div>`;
     } else if (grossSalary < minSalary) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
         document.querySelectorAll('#message')[0].style.display = 'block';
-        message.innerHTML = `<div class="message error">Vlera e pagës nuk mund te jetë me e ulët se paga minimale!</div>`;
+        message.innerHTML = `<div class="message error">${jsonData[appState.getPropertyByKey('language')].lowerThanMinSalaryError}!</div>`;
     } else {
         document.querySelectorAll('#message')[0].style.display = 'none';
         document.querySelectorAll('#allResults')[0].style.display = 'block';
@@ -84,11 +84,11 @@ const handleNetToGross = async function() {
     if (isNaN(netSalary)) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
         document.querySelectorAll('#message')[0].style.display = 'block';
-        message.innerHTML = `<div class="message error">Ju lutem vendosni nje vlere!</div>`;
+        message.innerHTML = `<div class="message error">${jsonData[appState.getPropertyByKey('language')].emptySalaryError}!</div>`;
     } else if (netSalary < minNetSalary) {
         document.querySelectorAll('#allResults')[0].style.display = 'none';
         document.querySelectorAll('#message')[0].style.display = 'block';
-        message.innerHTML = `<div class="message error">Vlera e pagës nuk mund te jetë me e ulët se paga minimale!</div>`;
+        message.innerHTML = `<div class="message error">${jsonData[appState.getPropertyByKey('language')].lowerThanMinSalaryError}!</div>`;
     } else {
         document.querySelectorAll('#message')[0].style.display = 'none';
         document.querySelectorAll('#allResults')[0].style.display = 'block';
