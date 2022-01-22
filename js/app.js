@@ -1,5 +1,4 @@
 import * as jsonData from '../lang/lang.json';
-console.log(jsonData);
 import { appState } from './stateManager';
 import { populateExpensesTable } from './generateTable.js';
 import { populateMobileExpensesTable } from './generateMobileTable.js';
@@ -36,7 +35,6 @@ currency.onchange = function (event) {
 const handleGrossToNet = async function() {
     if(appState.activeCurrency != 'all') {
         if(appState.currencyRate[`${appState.activeCurrency}_all`] == null) {
-            console.log('Call to service')
             appState.currencyRate[`${appState.activeCurrency}_all`] = await convertMoneyCurrency(appState.activeCurrency, 'all');
         }
     }
@@ -56,7 +54,6 @@ const handleGrossToNet = async function() {
         document.querySelectorAll('#allResults')[0].style.display = 'block';
 
         const netSalary = salaryCalculator2021.calculateNetSalary(grossSalary);
-        console.log(netSalary);
 
         populateResults(netSalary);
         if (window.innerWidth < 500) {
@@ -77,7 +74,6 @@ const handleNetToGross = async function() {
     // get Net Salary value
     if(appState.activeCurrency != 'all') {
         if(appState.currencyRate[`${appState.activeCurrency}_all`] == null) {
-            console.log('Call to service')
             appState.currencyRate[`${appState.activeCurrency}_all`] = await convertMoneyCurrency(appState.activeCurrency, 'all');
         }
     }
@@ -138,13 +134,3 @@ language.onchange = async function(event) {
         await handleGrossToNet();
 
 }
-
-// const getConversionRate = function (...currencies) {
-//     currencies.forEach(currency => {
-//         console.log(currency);
-//     });
-// }
-
-// getConversionRate('all', 'eur', 'usd');
-
-let appVersion = '1.0.0';

@@ -70,13 +70,11 @@ export class SalaryCalculator2021 extends SalaryCalculator {
         if (grossSalary <= tap.min) {
             this.netSalary = grossSalary - (this.employeeSocialContribution + this.employeeHealthContribution);
             this.salary = new Salary(grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, this.netSalary, this.totalExpense);
-            console.log(this.salary);
         } else if (grossSalary > tap.min && grossSalary <= tap.max) {
             this.tapSalaryTax = (grossSalary - tap.min) * this.tapMinTaxPercentage;
             this.netSalary = grossSalary - this.employeeSocialContribution - this.employeeHealthContribution - this.tapSalaryTax;
 
             this.salary = new Salary(grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, this.netSalary, this.totalExpense);
-            console.log(this.salary);
         } else {
             let tapMaxSalaryTax = (grossSalary - tap.max) * this.tapMaxTaxPercentage;
             let tapMinSalaryTax = (tap.max - tap.min) * this.tapMinTaxPercentage;
@@ -84,7 +82,6 @@ export class SalaryCalculator2021 extends SalaryCalculator {
 
             this.netSalary = grossSalary - this.employeeSocialContribution - this.employeeHealthContribution - this.tapSalaryTax;
             this.salary = new Salary(grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, this.netSalary, this.totalExpense);
-            console.log(this.salary);
         }
 
         return this.salary;
@@ -95,19 +92,16 @@ export class SalaryCalculator2021 extends SalaryCalculator {
             this.grossSalary = netSalary / (1 - (this.employeeSocialContributionPercentage + this.employeeHealthContributionPercentage));
             this.calculateContributions(this.grossSalary);
             this.salary = new Salary(this.grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, netSalary, this.totalExpense);
-            console.log(this.salary);
         } else if (netSalary > netSalaryRate.min && netSalary <= netSalaryRate.medium) {
             this.grossSalary = (netSalary - tap.min * this.tapMinTaxPercentage) / (1 - this.tapMinTaxPercentage - (this.employeeSocialContributionPercentage + this.employeeHealthContributionPercentage));
             this.calculateContributions(this.grossSalary);
             this.tapSalaryTax = (this.grossSalary - tap.min) * this.tapMinTaxPercentage;
             this.salary = new Salary(this.grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, netSalary, this.totalExpense);
-            console.log(this.salary);
         } else if (netSalary > netSalaryRate.medium && netSalary <= netSalaryRate.max) {
             this.grossSalary = (netSalary - tap.min * this.tapMinTaxPercentage + this.maxSalary * this.employeeSocialContributionPercentage) / (1 - this.tapMinTaxPercentage - this.employeeHealthContributionPercentage);
             this.calculateContributions(this.grossSalary);
             this.tapSalaryTax = (this.grossSalary - tap.min) * this.tapMinTaxPercentage;
             this.salary = new Salary(this.grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, netSalary, this.totalExpense);
-            console.log(this.salary);
         } else {
             this.grossSalary = (netSalary + (tap.max - tap.min) * this.tapMinTaxPercentage - this.tapMaxTaxPercentage * tap.max + this.maxSalary * this.employeeSocialContributionPercentage) / (1 - this.tapMaxTaxPercentage - this.employeeHealthContributionPercentage);
             this.calculateContributions(this.grossSalary);
@@ -115,7 +109,6 @@ export class SalaryCalculator2021 extends SalaryCalculator {
             this.tapMinSalaryTax = (tap.max - tap.min) * this.tapMinTaxPercentage;
             this.tapSalaryTax = this.tapMaxSalaryTax + this.tapMinSalaryTax;
             this.salary = new Salary(this.grossSalary, this.employeeSocialContribution, this.employeeHealthContribution, this.employerSocialContribution, this.employerHealthContribution, this.tapSalaryTax, netSalary, this.totalExpense);
-            console.log(this.salary);
         }
 
         return this.salary;
