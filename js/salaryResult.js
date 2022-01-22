@@ -1,6 +1,11 @@
 import * as jsonData from '../lang/lang.json';
 import { appState } from './stateManager'
 
+class SalaryResult {
+    activeLanguage;
+    
+}
+
 function generateResults(salary) {
     let results = '';
     results += `<section class="result">
