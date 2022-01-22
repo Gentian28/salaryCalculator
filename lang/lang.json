@@ -46,9 +46,9 @@
         "socialContributions": "Contributi sociali",
         "healthContributions": "Contributi sanitari",
         "grossToNetButton": "Lordo a Netto",
-        "netToGrossButton": "Da Netto a Lordo",
+        "netToGrossButton": "Netto a Lordo",
         "grossSalaryLabel": "Stipendio lordo",
-        "netSalaryLabel": "Salario netto",
+        "netSalaryLabel": "Stipendio netto",
         "totalExpensesLabel": "Spese totali",
         "emptySalaryError": "Per favore inserisci un valore",
         "lowerThanMinSalaryError": "Lo stipendio non può essere inferiore al salario minimo in Albania"
