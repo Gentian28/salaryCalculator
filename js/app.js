@@ -126,8 +126,6 @@ language.onchange = async function(event) {
     calculateNet.innerHTML = jsonData[appState.getPropertyByKey('language')].grossToNetButton;
     calculateGross.innerHTML = jsonData[appState.getPropertyByKey('language')].netToGrossButton;
     
-    // TO DO: remove duplicated logic to update result table language
-    // duplicated logic from on click
     if(appState.getPropertyByKey('currentCalculation') == 'netToGross')
         await handleNetToGross();
     else
