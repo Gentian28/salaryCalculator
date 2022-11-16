@@ -24,7 +24,7 @@ window.onkeydown = function (event) {
 async function convertMoneyCurrency(fromCurrency, toCurrency) {
     fromCurrency = fromCurrency.toUpperCase();
     toCurrency = toCurrency.toUpperCase();
-    let conversionCourse = await axios.get(`https://free.currconv.com/api/v7/convert?q=${fromCurrency}_${toCurrency}&compact=ultra&apiKey=17e0bf83ad97d32d9c38`);
+    let conversionCourse = await axios.get(`https://free.currconv.com/api/v7/convert?q=${fromCurrency}_${toCurrency}&compact=ultra&apiKey=a02f7a2b373d504529f9`);
     return conversionCourse.data[`${fromCurrency}_${toCurrency}`];
 }
 
